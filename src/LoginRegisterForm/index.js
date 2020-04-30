@@ -10,9 +10,21 @@ class LoginRegisterForm extends React.Component{
 			email: '',
 			password: '', 
 			username: '',
-			buissness: '',
-			action: 'login'
+			bussiness: '',
+			action: 'Login'
 		}
+	}
+	switchForm = () =>{
+		if(this.state.action === "Login"){
+			this.setState({action: "Register"})
+		}else{
+			this.setState({action: "Login"})
+		}
+	}
+	handleChange = (e) =>{
+		this.setState({
+			[e.target.name]: e.target.value
+		})
 	}
 
 	render(){
@@ -30,6 +42,14 @@ class LoginRegisterForm extends React.Component{
 				name="username"
 				placeholder="enter username"
 				value={this.state.username}
+				onChange={this.handleChange}
+				/>
+				<Label>bussiness:</Label>
+				<Form.Input
+				type="text"
+				name="bussiness"
+				placeholder="enter bussiness"
+				value={this.state.bussiness}
 				onChange={this.handleChange}
 				/>
 				</React.Fragment>
