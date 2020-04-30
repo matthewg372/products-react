@@ -26,6 +26,15 @@ class LoginRegisterForm extends React.Component{
 			[e.target.name]: e.target.value
 		})
 	}
+	handleSubmit = (e) => {
+		e.preventDefault()
+		if(this.state.action === "Register"){
+			this.props.register(this.state)
+		}else{
+			this.props.login(this.state)
+		}
+		
+	}
 
 	render(){
 		return(

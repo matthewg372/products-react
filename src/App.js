@@ -13,11 +13,11 @@ class App extends React.Component {
     }
   }
   register = async(registerInfo) =>{
-    const url = process.env.REACT_APP_API_URL + "api/v1/register"
-    try{
-      const registerResponse = await fetch(url,{
+    const url = process.env.REACT_APP_API_URL + "/api/v1/users/register"
+    try{ 
+      const registerResponse = await fetch(url, {
         credentials: 'include',
-        methods: 'POST',
+        method: 'POST',
         body: JSON.stringify(registerInfo),
         headers:{
           'content-type': 'application/json'
@@ -36,6 +36,9 @@ class App extends React.Component {
       console.log(err)  
     }
   }
+  login = async(loginInfo) =>{
+    console.log("logged in")
+  }
   render(){
     return (
       <div className="App">
@@ -44,7 +47,11 @@ class App extends React.Component {
         ?
         <ProductsContainer/>
         :
-        <LoginRegisterForm/>
+        <LoginRegisterForm 
+        register={this.register}
+        login={this.login}
+
+        />
 
 
       }
@@ -53,5 +60,8 @@ class App extends React.Component {
 
   }
 }
+
+
+
 
 export default App;
