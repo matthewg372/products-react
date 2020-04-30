@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import ProductsContainer from './ProductsContainer'
+import LoginRegisterForm from './LoginRegisterForm'
 
 class App extends React.Component {
   constructor(){
@@ -21,14 +22,14 @@ class App extends React.Component {
         headers:{
           'content-type': 'application/json'
         }
+      })
         const registerJson = await registerResponse.json()
         if(registerResponse.status === 200){
           this.setState({
             loggedIn: true,
             loggedInUserEmail: registerJson.data.email
-          })
-        }
-      })
+        })
+      }
       
     
     }catch(err){
@@ -38,7 +39,15 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-      <ProductsContainer/>
+      {
+        this.state.loggedIn
+        ?
+        <ProductsContainer/>
+        :
+        <LoginRegisterForm/>
+
+
+      }
       </div>
     );
 
