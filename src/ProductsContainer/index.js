@@ -30,7 +30,7 @@ class ProductsContainer extends React.Component{
 	}
 	addProduct = async (productToAdd) => {
 		try{
-			const url = process.env.REACT_APP_API_URL + '/api/v1/products'
+			const url = process.env.REACT_APP_API_URL + '/api/v1/products/'
 			const createProductResponse = await fetch(url,{
 				credentials: 'include',
 				method: 'POST',
@@ -45,7 +45,25 @@ class ProductsContainer extends React.Component{
 					products:[...this.state.products, createProductJson]
 				})
 			}
+			this.getProducts()
 		
+		}catch(err){
+			console.log(err)	
+		}
+	}
+	deleteProduct = async (productToDelete) =>{
+		try{
+			const url = process.env.REACT_APP_API_URL + '/api/v1/products/'
+			const deleteProductResponse = await fetch(url + productToDelete,{
+				credentials: 'include',
+				method: 'DELETE'
+			})
+			const deletedProductJson = await deleteProductResponse.json()
+			if(deleteProductResponse.status === 200){
+				this.setState({
+					products: this.state.products.filter(product => product.id != productToDelete)
+				})
+			}
 		}catch(err){
 			console.log(err)	
 		}
@@ -61,6 +79,7 @@ class ProductsContainer extends React.Component{
 			<React.Fragment>
 				<ProductsList 
 				products={this.state.products}
+				deleteProduct={this.deleteProduct}
 				/>
 				{
 				this.props.loggedIn

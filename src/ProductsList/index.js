@@ -16,7 +16,7 @@ export default function PoductsList(props){
 		        			price: {product.price}
 		    			</List.Content>
 		    			<List.Content >
-		    			<Button>
+		    			<Button onClick={() => props.deleteProduct(product.id)}>
 		    			Delete
 		    			</Button>
 		    			</List.Content>

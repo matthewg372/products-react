@@ -15,8 +15,16 @@ class NewProductForm extends React.Component{
 		const state =  this.state
 		state[e.target.name] = e.target.value
 		this.setState(state)
-			
-		
+	}
+	handleSubmit = (e) => {
+		e.preventDefault()
+		this.props.addProduct(this.state)
+		this.setState({
+			name: '',
+			flavors: '',
+			price: '',
+			quantity: ''
+		})
 	}
 
 render(){
@@ -37,8 +45,8 @@ render(){
 				<Label>flavors:</Label>
 				<Form.Input
 					type='text'
-					name='flavor'
-					value={this.state.flavor}
+					name='flavors'
+					value={this.state.flavors}
 					onChange={this.handleChange}
 				/>
 				<Label>quantity:</Label>
