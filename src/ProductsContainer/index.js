@@ -58,8 +58,11 @@ class ProductsContainer extends React.Component{
 			idOfProductToEdit: editProduct
 
 		})
-
-		
+	}
+	closeModal = () =>{
+		this.setState({
+			idOfProductToEdit: -1
+		})
 	}
 	deleteProduct = async (productToDelete) =>{
 		try{
@@ -77,6 +80,35 @@ class ProductsContainer extends React.Component{
 		}catch(err){
 			console.log(err)	
 		}
+	}
+	updateProduct =  async (productToUpdate) => {
+		const url = process.env.REACT_APP_API_URL + '/api/v1/products/'
+		try{
+			const updateProductResponse = await fetch(url + productToUpdate,{
+				credentials: 'include',
+				method: 'PUT',
+				body: JSON.stringify(productToUpdate),
+				headers:{
+					'content-type': 'application/json'
+				}
+			})
+			const updateProductJson = await updateProductResponse.json()
+			if(updateProductResponse.status === 200){
+				const products = this.state.products
+				const indexOfCarBeingUpdated = products.findIndex(product => product.id == this.state.idOfProductToEdit)
+				products[indexOfCarBeingUpdated] = updateProductJson.data
+				this.setState({
+					products: products,
+					idOfCarToEdit: -1
+				})
+
+			}
+			
+		
+		}catch(err){
+			console.log(err)	
+		}
+		
 	}
 
 
@@ -103,6 +135,7 @@ class ProductsContainer extends React.Component{
 				this.state.idOfProductToEdit !== -1
 				&&
 				<EditProductModal
+				updateProduct={this.updateProduct}
 				editProduct={this.state.products.find((product) => product.id === this.state.idOfProductToEdit)}
 				/>
 				}
