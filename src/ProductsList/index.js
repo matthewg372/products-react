@@ -21,7 +21,7 @@ export default function PoductsList(props){
 		    			</Button>
 		    			</List.Content>
 		    			<List.Content >
-		    			<Button >
+		    			<Button onClick={() => props.editProduct(product.id)}>
 		    			Edit 
 		    			</Button>
 		    			</List.Content>

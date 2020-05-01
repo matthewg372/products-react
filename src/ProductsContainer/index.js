@@ -1,13 +1,15 @@
 import React from 'react'
 import ProductsList from '../ProductsList'
 import NewProductForm from '../NewProductForm'
+import EditProductModal from '../EditProductModal'
 
 
 class ProductsContainer extends React.Component{
 	constructor(props){
 		super(props)
 		this.state = {
-			products: []
+			products: [],
+			idOfProductToEdit: -1
 
 		}
 	}
@@ -51,6 +53,14 @@ class ProductsContainer extends React.Component{
 			console.log(err)	
 		}
 	}
+	editProduct = (editProduct) => {
+		this.setState({
+			idOfProductToEdit: editProduct
+
+		})
+
+		
+	}
 	deleteProduct = async (productToDelete) =>{
 		try{
 			const url = process.env.REACT_APP_API_URL + '/api/v1/products/'
@@ -80,12 +90,20 @@ class ProductsContainer extends React.Component{
 				<ProductsList 
 				products={this.state.products}
 				deleteProduct={this.deleteProduct}
+				editProduct={this.editProduct}
 				/>
 				{
 				this.props.loggedIn
 				&&
 				<NewProductForm
 				addProduct={this.addProduct}
+				/>
+				}
+				{
+				this.state.idOfProductToEdit !== -1
+				&&
+				<EditProductModal
+				editProduct={this.state.products.find((product) => product.id === this.state.idOfProductToEdit)}
 				/>
 				}
 			</React.Fragment>
