@@ -4,7 +4,6 @@ import {Form, Button, Label, Segment} from 'semantic-ui-react'
 
 class EditProductModal extends React.Component{
 	constructor(props){
-		console.log(props);
 		super(props)
 		this.state = {
 			name: props.editProduct.name,
@@ -21,9 +20,12 @@ class EditProductModal extends React.Component{
 		})
 		
 	}
+	handleSubmit = (e) => {
+		e.preventDefault()
+		this.props.updateProduct(this.state)
+	}
 
 	render(){
-		console.log(this.state);
 		return(
 			
 			<Segment>

@@ -82,9 +82,9 @@ class ProductsContainer extends React.Component{
 		}
 	}
 	updateProduct =  async (productToUpdate) => {
-		const url = process.env.REACT_APP_API_URL + '/api/v1/products/'
+		const url = process.env.REACT_APP_API_URL + '/api/v1/products/' + this.state.idOfProductToEdit
 		try{
-			const updateProductResponse = await fetch(url + productToUpdate,{
+			const updateProductResponse = await fetch(url ,{
 				credentials: 'include',
 				method: 'PUT',
 				body: JSON.stringify(productToUpdate),
@@ -99,16 +99,12 @@ class ProductsContainer extends React.Component{
 				products[indexOfCarBeingUpdated] = updateProductJson.data
 				this.setState({
 					products: products,
-					idOfCarToEdit: -1
+					idOfProductToEdit: -1
 				})
-
 			}
-			
-		
 		}catch(err){
 			console.log(err)	
 		}
-		
 	}
 
 
