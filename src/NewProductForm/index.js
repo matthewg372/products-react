@@ -11,6 +11,13 @@ class NewProductForm extends React.Component{
 			quantity: ''
 		}
 	}
+	handleChange = (e) => {
+		const state =  this.state
+		state[e.target.name] = e.target.value
+		this.setState(state)
+			
+		
+	}
 
 render(){
 		return(
