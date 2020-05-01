@@ -58,6 +58,25 @@ class App extends React.Component {
       console.log(err)  
     }
   }
+  logout = async () =>{
+    try{
+      const url = process.env.REACT_APP_API_URL + "/api/v1/users/logout"
+      const logoutResponse = fetch(url,{
+        credentials: 'include'
+      })
+      const logoutJson = await logoutResponse.json()
+      if(logoutResponse.status === 200){
+        this.setState({
+          loggedIn: false, 
+          loggedInUserEmail: '',
+        })
+
+      }
+    
+    }catch(err){
+      console.log(err)  
+    }
+  }
   render(){
     return (
       <div className="App">
