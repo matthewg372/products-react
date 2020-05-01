@@ -1,10 +1,11 @@
 import React from 'react'
 import ProductsList from '../ProductsList'
+import NewProductForm from '../NewProductForm'
 
 
 class ProductsContainer extends React.Component{
-	constructor(){
-		super()
+	constructor(props){
+		super(props)
 		this.state = {
 			products: []
 
@@ -57,11 +58,18 @@ class ProductsContainer extends React.Component{
 
 	render(){
 		return (
-			<div>
+			<React.Fragment>
 				<ProductsList 
 				products={this.state.products}
 				/>
-			</div>
+				{
+				this.props.loggedIn
+				&&
+				<NewProductForm
+				addProduct={this.addProduct}
+				/>
+				}
+			</React.Fragment>
 
 
 		)

@@ -83,7 +83,8 @@ class App extends React.Component {
       {
         this.state.loggedIn
         ?
-        <ProductsContainer/>
+        <ProductsContainer 
+        loggedIn={this.state.loggedIn}/>
         :
         <LoginRegisterForm 
         register={this.register}
