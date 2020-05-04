@@ -24,7 +24,7 @@ class App extends React.Component {
   }
   componentDidMount = () =>{
     this.getProducts()
-    this.getLikes()
+    // this.getLikes()
   }
   register = async(registerInfo) =>{
     const url = process.env.REACT_APP_API_URL + "/api/v1/users/register"
