@@ -114,22 +114,22 @@ class App extends React.Component {
     })
     
   }
-  getLikes = async (getProducts) => {
-    try{
-      const url = process.env.REACT_APP_API_URL + "/api/v1/likes/user/"
-      const likesResponse = await fetch(url + 1,{
-        credentials: 'include'
-      })
-      const likesJson = await likesResponse.json()
+  // getLikes = async (getProducts) => {
+  //   try{
+  //     const url = process.env.REACT_APP_API_URL + "/api/v1/likes/user/"
+  //     const likesResponse = await fetch(url + 1,{
+  //       credentials: 'include'
+  //     })
+  //     const likesJson = await likesResponse.json()
 
-      this.setState({
-        likes: likesJson.data
-      })
+  //     this.setState({
+  //       likes: likesJson.data
+  //     })
     
-    }catch(err){
-      console.log(err)  
-    }
-  }
+  //   }catch(err){
+  //     console.log(err)  
+  //   }
+  // }
 
 
 
