@@ -29,7 +29,10 @@ class NewProductForm extends React.Component{
 
 render(){
 		return(
-			<Modal closeIcon={true} trigger={<Button>Add new</Button>}>
+			<Modal 
+			closeIcon={true} 
+			trigger={<Button className="button">Add new</Button>}
+			>
 			<Header>
         	enter new info
       		</Header>

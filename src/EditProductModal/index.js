@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form, Button, Label, Segment} from 'semantic-ui-react'
+import {Form, Button, Label, Modal, Header} from 'semantic-ui-react'
 
 
 class EditProductModal extends React.Component{
@@ -28,7 +28,11 @@ class EditProductModal extends React.Component{
 	render(){
 		return(
 			
-			<Segment>
+			<Modal open={true} closeIcon={true} onClose={this.props.closeModal}>
+			<Header>
+        	enter new info
+      		</Header>
+      		<Modal.Content >
 			<Form onSubmit={this.handleSubmit}>
 				<Label>name:</Label>
 				<Form.Input
@@ -44,13 +48,6 @@ class EditProductModal extends React.Component{
 					value={this.state.flavors}
 					onChange={this.handleChange}
 				/>
-				<Label>price:</Label>
-				<Form.Input
-					type='text'
-					name='price'
-					value={this.state.price}
-					onChange={this.handleChange}
-				/>
 				<Label>quantity:</Label>
 				<Form.Input
 					type='text'
@@ -58,13 +55,29 @@ class EditProductModal extends React.Component{
 					value={this.state.quantity}
 					onChange={this.handleChange}
 				/>
-				<Button type='Submit'>update product</Button>
+				<Label>price:</Label>
+				<Form.Input
+					type='text'
+					name='price'
+					value={this.state.price}
+					onChange={this.handleChange}
+				/>
+				<Button type='Submit'>Add</Button>
 			</Form>
-			</Segment>
+			</Modal.Content>
+			</Modal>
 
 		)
 	}
 
 }
+
+
+
+
+
+
+
+
 
 export default EditProductModal

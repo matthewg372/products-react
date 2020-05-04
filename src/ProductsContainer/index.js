@@ -1,34 +1,26 @@
 import React from 'react'
-import ProductsList from '../ProductsList'
 import NewProductForm from '../NewProductForm'
 import EditProductModal from '../EditProductModal'
-
+import UsersProducts from '../UsersProducts'
+import LikesContainer from '../LikesContainer'
+import {Button} from 'semantic-ui-react'
 
 class ProductsContainer extends React.Component{
 	constructor(props){
 		super(props)
 		this.state = {
 			products: [],
-			idOfProductToEdit: -1
+			idOfProductToEdit: -1,
+			usersId: '',
+			myProducts: false
 
 		}
 	}
 	componentDidMount(){
-		this.getProducts()
-	}
-	getProducts = async () => {
-		try{
-			const url = process.env.REACT_APP_API_URL + '/api/v1/products/all'
-			const productsResponse = await fetch(url,{
-				credentials: 'include'
-			})
-			const productsJson = await productsResponse.json()
-			this.setState({
-				products: productsJson
-			})
-		}catch(err){
-			console.log(err)	
-		}
+		this.setState({
+			usersId: this.props.userId,
+		})
+		this.getUsersProducts()
 	}
 	addProduct = async (productToAdd) => {
 		try{
@@ -106,27 +98,46 @@ class ProductsContainer extends React.Component{
 			console.log(err)	
 		}
 	}
-
-
-
-
-
-
+	getUsersProducts = async () => {
+		try{
+			const url = process.env.REACT_APP_API_URL + '/api/v1/products/users/' + this.props.userId
+			console.log(url);
+			const productsResponse = await fetch(url,{
+				credentials: 'include'
+			})
+			const productsJson = await productsResponse.json()
+			console.log(productsJson.data);
+			this.setState({
+				products: productsJson.data,
+				myProducts: true,
+			})
+		}catch(err){
+			console.log(err)	
+		}
+	}
 	render(){
 		return (
 			<React.Fragment>
-				<ProductsList 
+				{
+				this.props.loggedIn
+				&&
+				<div>
+				<NewProductForm
+				addProduct={this.addProduct}
+				/>
+				</div>
+				}
+
+				{
+				this.state.myProducts
+				&&
+				<UsersProducts 
 				products={this.state.products}
 				deleteProduct={this.deleteProduct}
 				editProduct={this.editProduct}
 				/>
-				{
-				this.props.loggedIn
-				&&
-				<NewProductForm
-				addProduct={this.addProduct}
-				/>
 				}
+
 				{
 				this.state.idOfProductToEdit !== -1
 				&&
