@@ -3,7 +3,6 @@ import './App.css';
 import ProductsContainer from './ProductsContainer'
 import LoginRegisterForm from './LoginRegisterForm'
 import ProductsList from './ProductsList'
-import LikesContainer from './LikesContainer'
 import Header from './Header'
 
 // list-productList
@@ -173,8 +172,6 @@ class App extends React.Component {
         products={this.state.products}
         likes={this.state.likes}
         />
-
-        <LikesContainer/>
         </div>
 
 

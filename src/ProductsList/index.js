@@ -5,16 +5,16 @@ import './index.css'
 
 export default function PoductsList(props){
 		
-	// const likes = props.likes.map(like => {
-	// 	const liked = 0
-	// 	return(
-	// 		<Feed key={like.id}>
-	// 			<Feed.Like>
-	// 				<Button><icon name='like'/>{like.likes}</Button>
-	// 			</Feed.Like>
-	// 		</Feed>
-	// 	)
-	// })
+	const likes = props.likes.map(like => {
+		const liked = 0
+		return(
+			<Feed key={like.id}>
+				<Feed.Like>
+					<Button><icon name='like'/>{like.likes}</Button>
+				</Feed.Like>
+			</Feed>
+		)
+	})
 	const products = props.products.map(product => {
 		return (
 			<Card  key={product.id} >
@@ -30,6 +30,8 @@ export default function PoductsList(props){
 						<Card.Content>
 		        			buissness: {product.user.bussiness}
 		    			</Card.Content>
+		    			<br/>
+		    			
 	    		</Card.Content>
 
 			</Card>
