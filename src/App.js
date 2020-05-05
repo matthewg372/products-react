@@ -24,7 +24,6 @@ class App extends React.Component {
   }
   componentDidMount = () =>{
     this.getProducts()
-    // this.getLikes()
   }
   register = async(registerInfo) =>{
     const url = process.env.REACT_APP_API_URL + "/api/v1/users/register"
@@ -109,27 +108,12 @@ class App extends React.Component {
     }
   }
   switchViews = (nameOfView) => {
+    this.getProducts()
     this.setState({
       views: nameOfView,
     })
     
   }
-  // getLikes = async (getProducts) => {
-  //   try{
-  //     const url = process.env.REACT_APP_API_URL + "/api/v1/likes/user/"
-  //     const likesResponse = await fetch(url + 1,{
-  //       credentials: 'include'
-  //     })
-  //     const likesJson = await likesResponse.json()
-
-  //     this.setState({
-  //       likes: likesJson.data
-  //     })
-    
-  //   }catch(err){
-  //     console.log(err)  
-  //   }
-  // }
 
 
 
