@@ -108,10 +108,10 @@ class App extends React.Component {
     }
   }
   switchViews = (nameOfView) => {
-    this.getProducts()
     this.setState({
       views: nameOfView,
     })
+    this.getProducts()
     
   }
 
