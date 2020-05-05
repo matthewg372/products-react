@@ -39,7 +39,8 @@ class ProductsContainer extends React.Component{
 					products:[...this.state.products, createProductJson]
 				})
 			}
-			this.getProducts()
+			this.getUsersProducts()
+			
 		
 		}catch(err){
 			console.log(err)	
