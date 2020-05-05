@@ -20,15 +20,15 @@ export default function PoductsList(props){
 			<Card  key={product.id} >
 
 				<Card.Content >
-					<Card.Header>name: {product.name}</Card.Header>
-						<Card.Description>flavors: {product.flavors}</Card.Description>
+					<Card.Header>Name: {product.name}</Card.Header>
+						<Card.Description>Flavors: {product.flavors}</Card.Description>
 						<Card.Content>
-		        			quantity: {product.quantity}
+		        			Quantity: {product.quantity}
 		        			<br/>
-		        			price: $ {product.price}
+		        			Price: $ {product.price}
 		    			</Card.Content>
 						<Card.Content>
-		        			buissness: {product.user.bussiness}
+		        			Business: {product.user.bussiness}
 		    			</Card.Content>
 		    			<br/>
 		    			
